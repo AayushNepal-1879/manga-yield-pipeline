@@ -1,0 +1,65 @@
+# Default configuration for the mangayield pipeline.
+# Every key mirrors a field in mangayield/config.py. Delete any section to keep
+# its defaults. Load with: mangayield.load_config("config/default.yaml")
+
+cosmology:
+  H0: 70.0
+  Om0: 0.3
+  Ode0: 0.7
+
+sample:
+  z_min: 0.01
+  z_max: 0.15
+  logmstar_min: 9.0
+  logmstar_max: 11.5
+  ba_min: 0.25          # reject near edge-on (deprojection unstable)
+  ba_max: 0.95          # reject near face-on (no rotation signal)
+  daptype: "HYB10-MILESHC-MASTARSSP"
+  max_galaxies: null    # null = no limit
+
+metallicity:
+  calibration: "PP04_O3N2"   # PP04_O3N2 | PP04_N2 | M13_O3N2 | M13_N2 | D16
+  sn_min: 3.0
+  ha_hb_min: 2.86
+  extinction_law: "calzetti" # calzetti | cardelli
+  bpt_class: "kauffmann"     # kauffmann | kewley | none
+  fit_gradient_rmax_re: 2.0
+
+kinematics:
+  tracer: "stellar"          # stellar | gas
+  q0: 0.13
+  n_rings: 12
+  rmax_re: 2.2
+  min_spx_per_ring: 12
+  outer_frac: 0.5
+  n_orbit_levels: 6
+
+yields:
+  box_model: "leaky"         # closed | leaky
+  imf_low_slope: 1.3
+  imf_mid_slope: 2.3
+  m_min: 0.08
+  m_max: 100.0
+  sn_mass_min: 8.0
+  m_collapse: 100.0
+  return_fraction: 0.4
+
+inference:
+  alpha_prior_mean: 2.35     # Salpeter high-mass slope
+  alpha_prior_sigma: 0.6
+  use_alpha_fe: true         # include [alpha/Fe] constraint if available
+  tau_prior_mean: 3.0
+  tau_prior_sigma: 2.0
+  n_walkers_steps: 6000
+  n_burn: 1500
+  mcmc_step: 0.08
+  seed: 12345
+
+rar:
+  gbar_model: "spherical"    # spherical | thindisk
+  include_gas: true
+  fit_gdagger: true
+  gdagger_guess: 1.2e-10
+
+outdir: "results"
+n_jobs: 1

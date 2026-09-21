@@ -1,0 +1,11 @@
+# Core scientific stack (required)
+numpy>=1.21
+scipy>=1.7
+astropy>=5.0
+matplotlib>=3.4
+pyyaml>=5.4
+
+# Optional: official SDSS/MaNGA data access.
+# The pipeline runs without it (raw-FITS and mock modes), but Marvin
+# unlocks remote/local DAP & DRP access plus value-added catalogs.
+# sdss-marvin>=2.8
